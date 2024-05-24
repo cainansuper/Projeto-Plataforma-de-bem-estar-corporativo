@@ -45,14 +45,50 @@ def listarFuncionario(funcionario):
         print("Funcionario: ", funcionario[i][0], ", codigo: ", funcionario[i][1])
 
 def pesquisarFuncionario(funcionario, codigo):
+    dado = []
+    n = 0
     for i in range(len(funcionario)):
         for l in range(len(funcionario[i])):
             if funcionario[i][l] == codigo:
-                n = i - 1
+                dado.append(funcionario[i])
+                n += 1
+    if n == 1:
+        print("Funcionário: ", dado[0][0] , ", Codigo: ", dado[0][1])
+    
+    else:
+        print("Não foi encontrada nenhuma correspondência para o codigo inserido! ")
+
+def pesquisarFuncionario2(funcionario, codigo):
+    dado = 0
+    n = 0
     for i in range(len(funcionario)):
         for l in range(len(funcionario[i])):
-            if i == n:
-                return funcionario[i]
+            if funcionario[i][l] == codigo:
+                dado = i
+                n += 1
+    if n == 1:
+        return dado
+    else:
+        return None
+
+
+def removerFuncionario(funcionario, indice):
+    if indice == None:
+        print("Funcionário não encontrado! ")
+    else:
+        print("Funcionário: ", funcionario[indice][0] , ", Codigo: ", funcionario[indice][1])
+        print()
+        temCerteza = int(input("Tem certeza que deseja excluir esse funcionario? \n"
+                                    "[ 1 ] - Sim \n "
+                                    "[ 2 ] - Não. \n"
+                                    "Digite: "))
+        if temCerteza == 1:
+            funcionario.pop(indice)
+            print("Funcionário excluído! ")   
+        elif temCerteza == 2:
+            print("FUncionário não excluído! ")
+        else:
+            print("Erro! valor digitado não corresponde a nenhuma opção fornecida! ")                 
 
 while True:
     escolha = int(input("-------------- MENU -------------- \n"
@@ -95,12 +131,16 @@ while True:
                 os.system('cls')
                 print("-------------- Pesquisar funcionário -------------- \n")
                 codigoPesquisa = input("Digite qual o codigo do funcionário: ")
-                print(pesquisarFuncionario(funcionario, codigo))
+                pesquisarFuncionario(funcionario, codigoPesquisa)
                 print()
             
             if escolha1 == 4:
                 os.system('cls')
                 print("-------------- Remover funcionário -------------- \n")
+                codigoPesquisa = input("Digite o codigo do funcionário: ")
+                indice = pesquisarFuncionario2(funcionario, codigoPesquisa)
+                removerFuncionario(funcionario, indice)
+
 
             if escolha1 == 5:
                 os.system('cls')
