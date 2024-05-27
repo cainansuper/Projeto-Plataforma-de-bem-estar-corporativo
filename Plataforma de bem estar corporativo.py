@@ -129,7 +129,7 @@ def medirIMC(altura, peso):
 def registrarIMC(funcionario, imc, indice):
     funcionario[indice][2] = imc
 
-# 3ª opção do menu: programa de exercio, criar uma pilha contendo alguns exercicios, cada exercicio deve ser feito na ordem da pilha e ao ser realizado deve ser retirado da pilha, quando todos os exercicios tiverem completos a pilha deve reiniciar.
+# 3ª opção do menu: programa de exercicio, criar uma pilha contendo alguns exercicios, cada exercicio deve ser feito na ordem da pilha e ao ser realizado deve ser retirado da pilha, quando o usuário remover um exercicio porém todos os exercicios tiverem completos, a pilha deve reiniciar. Obs: também foram usados vetores para armazenar em determinados momentos os conteúdos da pilha.
 exercicios = []
 def pushPilha(pilha, valor):
     pilha.append(valor)
@@ -163,6 +163,28 @@ for l in range(len(exercicio2)):
     pushPilha(exercicios, exercicio2[l])
     i -= 1
 
+#Opção 4: Aconselhamento nutricional, fazer uma matriz com os determinados alimentos cadastrados junto a quantidade da porção correspondente em gramas aos seus valores nutricionais. (alimento/gramas/kcal) https://www.tabeladecalorias.net/alimento/pratos-refeicoes
+numAlimnetos = 5
+alimentos = [str] * numAlimnetos
+for i in range(len(alimentos)):
+    alimentos[i] = [str] * 3
+
+alimentos[0] = ['Escondidinho de carne', '200', '340']
+alimentos[1] = ['Empada de frango', '210', '611']
+alimentos[2] = ['Estrogonofe de carne', '192', '551']
+alimentos[3] = ['Filé de frango', '160', '264']
+alimentos[4] = ['Feijoada completa', '250', '365']
+
+#Opção 5: Suporte a redução de extresse, Criar uma matriz informando ao usuário algumas atividades que podem ajudar a reduzir o extresse. também deve ser informado uma pequena descrição da atividade.
+atividades = [str] * 5
+for i in range(len(atividades)):
+    atividades[i] = [str] * 2
+
+atividades[0] = ['Exercícios de Visualização', 'Imaginar cenários relaxantes pode ajudar a diminuir o estresse mental.']
+atividades[1] = ['Meditação Mindfulness', 'Envolve focar no momento presente, ajudando a reduzir o estresse e a ansiedade.']
+atividades[2] = ['Pilates', 'Foca na respiração controlada e nos movimentos suaves para fortalecer o corpo e acalmar a mente.']
+atividades[3] = ['Alongamento', 'Simples rotinas de alongamento podem ajudar a liberar a tensão muscular acumulada.']
+atividades[4] = ['Yoga:', 'Combina movimento físico com técnicas de respiração e meditação, ajudando a relaxar o corpo e a mente.']
 
 #---------------Código principal-----------------
 while True:
@@ -171,7 +193,9 @@ while True:
                   "[ 1 ] - MENU Funcionários. \n"
                   "[ 2 ] - Avaliação de saúde. \n"
                   "[ 3 ] - Programa de exercícios \n"
-                  "[ 4 ] - SAIR \n"
+                  "[ 4 ] - Aconselhamento nutricional \n"
+                  "[ 5 ] - Suporte a redução de extresse \n"
+                  "[ 6 ] - SAIR \n"
                   "Digite: "))
 
     if escolha == 1:
@@ -325,6 +349,31 @@ while True:
                 print("Número digitado inválido! ")
 
     elif escolha == 4:
+        while True:
+            os.system('cls')
+            print("-------------- Aconselhamento nutricional -------------- \n"
+                "Aqui está uma lista com alimentos e seus devidos valores nutricionais: \n")
+            for i in range(len(alimentos)):
+                print(alimentos[i][0], "(", alimentos[i][1], "g) / calorias estimadas: ", alimentos[i][2], "kcal. \n")
+            op = int(input("Para voltar ao menu digite [ 1 ]. "))
+            if op == 1:
+                os.system('cls')
+                break
+    
+    elif escolha == 5:
+        while True:
+            os.system('cls')
+            print("-------------- Suporte a redução de extresse -------------- \n"
+                "Lista de atividades que podem ajudar a reduzir o extresse acumulado:")
+            for i in range(len(atividades)):
+                print(atividades[i][0], ": ", atividades[i][1], "\n")
+            op = int(input("Para voltar ao menu digite [ 1 ]. "))
+            if op == 1:
+                os.system('cls')
+                break
+
+
+    elif escolha == 6:
         os.system('cls')
         print("Saindo...")
         break
